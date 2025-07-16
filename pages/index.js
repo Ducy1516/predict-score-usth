@@ -23,6 +23,7 @@ const majors = [
 
 export default function Home() {
   const [nickname, setNickname] = useState('');
+  const [studentId, setStudentId] = useState('');
   const [bets, setBets] = useState({});
 
   const handleBetChange = (major, choice) => {
@@ -36,23 +37,35 @@ export default function Home() {
 
   return (
     <main style={{ padding: 20 }}>
-      <h1>Dự đoán điểm chuẩn USTH 2025 🎯</h1>
-      <input
-        type="text"
-        placeholder="Nhập tên của bạn"
-        value={nickname}
-        onChange={e => setNickname(e.target.value)}
-        style={{ padding: 8, marginBottom: 20, display: "block" }}
-      />
-      {majors.map(({ name, threshold }) => (
-        <div key={name} style={{ marginBottom: 10 }}>
-          <strong>{name}</strong> – Mốc: {threshold}
-          <br />
-          <button onClick={() => handleBetChange(name, 'OVER')}>Over</button>
-          <button onClick={() => handleBetChange(name, 'UNDER')}>Under</button>
-        </div>
-      ))}
-      <button onClick={handleSubmit} style={{ marginTop: 20 }}>Gửi dự đoán</button>
+  <h1>DỰ ĐOÁN ĐIỂM CHUẨN THPTQG CỦA USTH 🎯</h1>
+
+  {/* 📝 Đoạn giới thiệu tâm tình */}
+  <p style={{ marginBottom: 20 }}>
+    Xin chào mọi người, mình là <strong>Trí Đức – B3 khoa ICT</strong>.  
+    Với mong muốn rèn luyện kỹ năng code cũng như tạo ra một minigame thú vị cho cộng đồng USTH,  
+    mình đã tự xây dựng trang web nhỏ này để mọi người cùng <strong>dự đoán điểm chuẩn THPTQG 2025</strong> theo hình thức <em>Over/Under</em>.  
+    <br /><br />
+    Hãy thử dự đoán xem năm nay điểm chuẩn sẽ cao hay thấp hơn mốc nhé!  
+    Có <strong>giải thưởng tiền mặt</strong> chờ bạn nếu dự đoán chính xác 🎁
+  </p>
+
+  {/* 🔹 Nhập tên và mã sinh viên */}
+  <input
+    type="text"
+    placeholder="Nhập nickname của bạn"
+    value={nickname}
+    onChange={e => setNickname(e.target.value)}
+    style={{ padding: 8, marginBottom: 10, width: "100%" }}
+  />
+
+  <input
+    type="text"
+    placeholder="(Tuỳ chọn) Mã sinh viên"
+    value={studentId}
+    onChange={e => setStudentId(e.target.value)}
+    style={{ padding: 8, marginBottom: 20, width: "100%" }}
+  />
+
     </main>
   );
 }
