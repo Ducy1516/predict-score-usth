@@ -1,3 +1,3 @@
 {
-  "rewrites": [{ "source": "/admin", "destination": "/admin/index.js" }]
+  "rewrites": [{ "source": "/admin", "destination": "/admin.js" }]
 }

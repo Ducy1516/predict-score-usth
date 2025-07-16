@@ -1,5 +1,5 @@
 {
-  "name": "usth-predict-score",
+  "name": "usth-predict-score-full",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
