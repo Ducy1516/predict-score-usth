@@ -99,7 +99,7 @@ export default function Home() {
   }}
 >
   Over
-    
+    </button>    
 <button
   onClick={() => handleBetChange(name, 'UNDER')}
   style={{
