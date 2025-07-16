@@ -83,8 +83,25 @@ export default function Home() {
             <div key={name} style={{ marginBottom: 10 }}>
               <strong>{name}</strong> – Mốc: {threshold}
               <br />
-              <button onClick={() => handleBetChange(name, 'OVER')} style={{ marginRight: 10 }}>Over</button>
-              <button onClick={() => handleBetChange(name, 'UNDER')}>Under</button>
+              <button
+  onClick={() => handleBetChange(name, 'OVER')}
+  style={{
+    marginRight: 10,
+    backgroundColor: bets[name] === 'OVER' ? 'lightgreen' : '',
+  }}
+>
+  Over
+</button>
+
+<button
+  onClick={() => handleBetChange(name, 'UNDER')}
+  style={{
+    backgroundColor: bets[name] === 'UNDER' ? 'lightcoral' : '',
+  }}
+>
+  Under
+</button>
+
             </div>
           ))}
           <button onClick={handleSubmit} style={{ marginTop: 20 }}>Gửi dự đoán</button>
