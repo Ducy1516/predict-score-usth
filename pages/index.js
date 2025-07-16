@@ -15,7 +15,7 @@ const majors = [
   { name: "Khoa học Vũ trụ và Công nghệ Vệ tinh (SST)", threshold: 20.85 },
   { name: "Kỹ thuật điện và Năng lượng tại tạo (EER)", threshold: 20.2 },
   { name: "Kỹ thuật Ô tô (ATE)", threshold: 21.45 },
-  { name: "Toán ứng dụng (MAT)", threshold: 20.1 },
+  { name: "Toán ứng dụng (MAT)", threshold: 20.1 },    
   { name: "Công nghệ vi mạch bán dẫn (SIC)", threshold: 23.9 },
   { name: "Dược học (MAT)", threshold: 22.55 },
 
@@ -91,8 +91,7 @@ export default function Home() {
   }}
 >
   Over
-</button>
-
+    
 <button
   onClick={() => handleBetChange(name, 'UNDER')}
   style={{
