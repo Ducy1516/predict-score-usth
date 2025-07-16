@@ -44,7 +44,6 @@ export default function Home() {
     // Gửi dữ liệu đến backend hoặc Supabase tại đây nếu muốn
   };
 
-  return (
    return (
   <main style={{ padding: 20 }}>
     {step === 'intro' && (
