@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 const majors = [
@@ -18,8 +17,8 @@ const majors = [
   { name: "Toán ứng dụng (MAT)", threshold: 20.1 },    
   { name: "Công nghệ vi mạch bán dẫn (SIC)", threshold: 23.9 },
   { name: "Dược học (MAT)", threshold: 22.55 },
-
 ];
+
 export default function Home() {
   const [nickname, setNickname] = useState('');
   const [studentId, setStudentId] = useState('');
@@ -35,16 +34,15 @@ export default function Home() {
   };
 
   const handleBetChange = (major, choice) => {
-  setBets(prev => {
-    if (prev[major] === choice) {
-      const updated = { ...prev };
-      delete updated[major]; // nếu nhấn lại thì hủy chọn
-      return updated;
-    }
-    return { ...prev, [major]: choice };
-  });
-};
-
+    setBets(prev => {
+      if (prev[major] === choice) {
+        const updated = { ...prev };
+        delete updated[major]; // Hủy chọn nếu nhấn lại
+        return updated;
+      }
+      return { ...prev, [major]: choice };
+    });
+  };
 
   const handleSubmit = () => {
     alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
@@ -56,11 +54,11 @@ export default function Home() {
         <>
           <h1>DỰ ĐOÁN ĐIỂM CHUẨN THPTQG CỦA USTH 🎯</h1>
           <p>
-            Xin chào mọi người, mình là <strong>Trí Đức – B3 khoa ICT</strong>.  
-            Với mong muốn rèn luyện kỹ năng code cũng như tạo ra một minigame thú vị cho cộng đồng USTH,  
-            mình đã tự xây dựng trang web nhỏ này để mọi người cùng <strong>dự đoán điểm chuẩn THPTQG 2025</strong> theo hình thức <em>Over/Under</em>.  
+            Xin chào mọi người, mình là <strong>Trí Đức – B3 khoa ICT</strong>.
+            Với mong muốn rèn luyện kỹ năng code cũng như tạo ra một minigame thú vị cho cộng đồng USTH,
+            mình đã tự xây dựng trang web nhỏ này để mọi người cùng <strong>dự đoán điểm chuẩn THPTQG 2025</strong> theo hình thức <em>Over/Under</em>.
             <br /><br />
-            Hãy thử dự đoán xem năm nay điểm chuẩn sẽ cao hay thấp hơn mốc nhé!  
+            Hãy thử dự đoán xem năm nay điểm chuẩn sẽ cao hay thấp hơn mốc nhé!
             Có <strong>giải thưởng tiền mặt</strong> chờ bạn nếu dự đoán chính xác 🎁
           </p>
 
@@ -92,23 +90,22 @@ export default function Home() {
               <strong>{name}</strong> – Mốc: {threshold}
               <br />
               <button
-  onClick={() => handleBetChange(name, 'OVER')}
-  style={{
-    marginRight: 10,
-    backgroundColor: bets[name] === 'OVER' ? 'lightgreen' : '',
-  }}
->
-  Over
-    </button>    
-<button
-  onClick={() => handleBetChange(name, 'UNDER')}
-  style={{
-    backgroundColor: bets[name] === 'UNDER' ? 'lightcoral' : '',
-  }}
->
-  Under
-</button>
-
+                onClick={() => handleBetChange(name, 'OVER')}
+                style={{
+                  marginRight: 10,
+                  backgroundColor: bets[name] === 'OVER' ? 'lightgreen' : '',
+                }}
+              >
+                Over
+              </button>
+              <button
+                onClick={() => handleBetChange(name, 'UNDER')}
+                style={{
+                  backgroundColor: bets[name] === 'UNDER' ? 'lightcoral' : '',
+                }}
+              >
+                Under
+              </button>
             </div>
           ))}
           <button onClick={handleSubmit} style={{ marginTop: 20 }}>Gửi dự đoán</button>
