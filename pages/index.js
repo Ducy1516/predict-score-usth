@@ -35,8 +35,16 @@ export default function Home() {
   };
 
   const handleBetChange = (major, choice) => {
-    setBets(prev => ({ ...prev, [major]: choice }));
-  };
+  setBets(prev => {
+    if (prev[major] === choice) {
+      const updated = { ...prev };
+      delete updated[major]; // nếu nhấn lại thì hủy chọn
+      return updated;
+    }
+    return { ...prev, [major]: choice };
+  });
+};
+
 
   const handleSubmit = () => {
     alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
