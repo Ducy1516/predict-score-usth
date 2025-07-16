@@ -20,20 +20,19 @@ const majors = [
   { name: "Dược học (MAT)", threshold: 22.55 },
 
 ];
-
 export default function Home() {
   const [nickname, setNickname] = useState('');
   const [studentId, setStudentId] = useState('');
   const [bets, setBets] = useState({});
   const [step, setStep] = useState('intro');
-  const handleStart = () => {
-  if (!nickname) {
-    alert('Vui lòng nhập nickname trước khi dự đoán');
-    return;
-  }
-  setStep('bet'); // sang phần chọn Over/Under
-};
 
+  const handleStart = () => {
+    if (!nickname) {
+      alert('Vui lòng nhập nickname trước khi dự đoán');
+      return;
+    }
+    setStep('bet');
+  };
 
   const handleBetChange = (major, choice) => {
     setBets(prev => ({ ...prev, [major]: choice }));
@@ -41,59 +40,56 @@ export default function Home() {
 
   const handleSubmit = () => {
     alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
-    // Gửi dữ liệu đến backend hoặc Supabase tại đây nếu muốn
   };
 
-   return (
-  <main style={{ padding: 20 }}>
-    {step === 'intro' && (
-      <>
-        <h1>DỰ ĐOÁN ĐIỂM CHUẨN THPTQG CỦA USTH 🎯</h1>
-        <p>
-          Xin chào mọi người, mình là <strong>Trí Đức – B3 khoa ICT</strong>.  
-          Với mong muốn rèn luyện kỹ năng code cũng như tạo ra một minigame thú vị cho cộng đồng USTH,  
-          mình đã tự xây dựng trang web nhỏ này để mọi người cùng <strong>dự đoán điểm chuẩn THPTQG 2025</strong> theo hình thức <em>Over/Under</em>.  
-          <br /><br />
-          Hãy thử dự đoán xem năm nay điểm chuẩn sẽ cao hay thấp hơn mốc nhé!  
-          Có <strong>giải thưởng tiền mặt</strong> chờ bạn nếu dự đoán chính xác 🎁
-        </p>
+  return (
+    <main style={{ padding: 20 }}>
+      {step === 'intro' && (
+        <>
+          <h1>DỰ ĐOÁN ĐIỂM CHUẨN THPTQG CỦA USTH 🎯</h1>
+          <p>
+            Xin chào mọi người, mình là <strong>Trí Đức – B3 khoa ICT</strong>.  
+            Với mong muốn rèn luyện kỹ năng code cũng như tạo ra một minigame thú vị cho cộng đồng USTH,  
+            mình đã tự xây dựng trang web nhỏ này để mọi người cùng <strong>dự đoán điểm chuẩn THPTQG 2025</strong> theo hình thức <em>Over/Under</em>.  
+            <br /><br />
+            Hãy thử dự đoán xem năm nay điểm chuẩn sẽ cao hay thấp hơn mốc nhé!  
+            Có <strong>giải thưởng tiền mặt</strong> chờ bạn nếu dự đoán chính xác 🎁
+          </p>
 
-        <input
-          type="text"
-          placeholder="Nhập nickname của bạn"
-          value={nickname}
-          onChange={e => setNickname(e.target.value)}
-          style={{ padding: 8, marginBottom: 10, width: "100%" }}
-        />
+          <input
+            type="text"
+            placeholder="Nhập nickname của bạn"
+            value={nickname}
+            onChange={e => setNickname(e.target.value)}
+            style={{ padding: 8, marginBottom: 10, width: "100%" }}
+          />
 
-        <input
-          type="text"
-          placeholder="Nhập mã sinh viên của bạn"
-          value={studentId}
-          onChange={e => setStudentId(e.target.value)}
-          style={{ padding: 8, marginBottom: 20, width: "100%" }}
-        />
+          <input
+            type="text"
+            placeholder="Hãy nhập mã sinh viên của bạn nhé!"
+            value={studentId}
+            onChange={e => setStudentId(e.target.value)}
+            style={{ padding: 8, marginBottom: 20, width: "100%" }}
+          />
 
-        <button onClick={handleStart}>Bắt đầu dự đoán</button>
-      </>
-    )}
+          <button onClick={handleStart}>Bắt đầu dự đoán</button>
+        </>
+      )}
 
-    {step === 'bet' && (
-      <>
-        <h2>Chọn OVER hoặc UNDER cho từng ngành</h2>
-        {majors.map(({ name, threshold }) => (
-          <div key={name} style={{ marginBottom: 10 }}>
-            <strong>{name}</strong> – Mốc: {threshold}
-            <br />
-            <button onClick={() => handleBetChange(name, 'OVER')} style={{ marginRight: 10 }}>Over</button>
-            <button onClick={() => handleBetChange(name, 'UNDER')}>Under</button>
-          </div>
-        ))}
-        <button onClick={handleSubmit} style={{ marginTop: 20 }}>Gửi dự đoán</button>
-      </>
-    )}
-  </main>
-);
-
+      {step === 'bet' && (
+        <>
+          <h2>Chọn OVER hoặc UNDER cho từng ngành</h2>
+          {majors.map(({ name, threshold }) => (
+            <div key={name} style={{ marginBottom: 10 }}>
+              <strong>{name}</strong> – Mốc: {threshold}
+              <br />
+              <button onClick={() => handleBetChange(name, 'OVER')} style={{ marginRight: 10 }}>Over</button>
+              <button onClick={() => handleBetChange(name, 'UNDER')}>Under</button>
+            </div>
+          ))}
+          <button onClick={handleSubmit} style={{ marginTop: 20 }}>Gửi dự đoán</button>
+        </>
+      )}
+    </main>
   );
 }
