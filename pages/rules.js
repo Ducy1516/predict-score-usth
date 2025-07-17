@@ -34,6 +34,10 @@ export default function RulesPage() {
 
       <button onClick={handleContinue} style={{ padding: '10px 20px', fontSize: 16 }}>
         Tôi đã hiểu và muốn tiếp tục
+        const handleContinue = () => {
+          router.push('/bet');
+};
+
       </button>
     </main>
   );
