@@ -59,12 +59,7 @@ export default function BetPage() {
   return (
     <main style={{ padding: 20, maxWidth: 800, margin: 'auto' }}>
       <h1>Chào {nickname}!</h1>
-      <input
-        placeholder="Mã sinh viên (tùy chọn)"
-        value={studentCode}
-        onChange={e => setStudentCode(e.target.value)}
-        style={{ marginBottom: 20, padding: 8, width: '100%' }}
-      />
+      
       <h2>Chọn OVER hoặc UNDER cho từng ngành</h2>
       {majors.map(({ name, threshold }) => (
         <div key={name} style={{ marginBottom: 10 }}>
