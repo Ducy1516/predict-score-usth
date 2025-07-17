@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router';
-const router = useRouter();
-
 
 export default function RulesPage() {
   const router = useRouter();
@@ -14,7 +12,9 @@ export default function RulesPage() {
       <h1>📜 Luật chơi minigame Dự đoán điểm chuẩn USTH 2025</h1>
 
       <ul style={{ lineHeight: 1.8 }}>
-        <li>Bạn sẽ dự đoán <strong>Over</strong> hoặc <strong>Under</strong> so với mốc điểm chuẩn của từng ngành.</li>
+        <li>Bạn sẽ dự đoán <strong>Over</strong> hoặc <strong>Under</strong> so với mốc điểm của ngành mà web đã đưa ra!.</li>
+        <li><strong>Cách chơi:</strong> Ví dụ mốc điểm của ngành An toàn thông tin (CS) là 22.05. Bạn đánh Over, khi điểm chuẩn là 22 => Bạn thua,
+khi điểm chuẩn là 22.10 => Bạn thắng. Còn nếu điểm chuẩn là chính xác 22.05 => Bạn cũng thắng luôn.<li>
         <li><strong>Hạn cuối:</strong> 23:59 ngày 12/08/2025. Sau thời gian này, mọi dự đoán sẽ bị khóa.</li>
         <li><strong>Lệ phí tham gia:</strong> 5.000đ qua QR code bên dưới.</li>
         <li>Bạn có thể sửa đổi dự đoán bao nhiêu lần tùy ý trước hạn chót.</li>
@@ -34,10 +34,6 @@ export default function RulesPage() {
 
       <button onClick={handleContinue} style={{ padding: '10px 20px', fontSize: 16 }}>
         Tôi đã hiểu và muốn tiếp tục
-        const handleContinue = () => {
-          router.push('/bet');
-};
-
       </button>
     </main>
   );
