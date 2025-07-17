@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const majors = [
@@ -25,13 +26,20 @@ export default function Home() {
   const [bets, setBets] = useState({});
   const [step, setStep] = useState('intro');
 
-  const handleStart = () => {
-    if (!nickname) {
-      alert('Vui lòng nhập nickname trước khi dự đoán');
-      return;
-    }
-    setStep('bet');
-  };
+ const handleStart = () => {
+  if (!nickname) {
+    alert('Vui lòng nhập nickname trước khi dự đoán');
+    return;
+  }
+
+  // Lưu nickname và studentId vào localStorage (để sang trang /rules hoặc /bet vẫn còn)
+  localStorage.setItem('nickname', nickname);
+  localStorage.setItem('studentId', studentId);
+
+  // Chuyển sang trang giới thiệu luật chơi
+  router.push('/rules');
+};
+
 
   const handleBetChange = (major, choice) => {
     setBets(prev => {
