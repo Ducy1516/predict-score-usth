@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router';
+const router = useRouter();
+
 
 export default function RulesPage() {
   const router = useRouter();
@@ -31,7 +33,7 @@ export default function RulesPage() {
       </div>
 
       <button onClick={handleContinue} style={{ padding: '10px 20px', fontSize: 16 }}>
-        Tôi đã hiểu – Tiếp tục
+        Tôi đã hiểu và muốn tiếp tục
       </button>
     </main>
   );
