@@ -24,14 +24,17 @@ const majors = [
 export default function BetPage() {
   const router = useRouter();
   const [nickname, setNickname] = useState('');
+  const [studentCode, setStudentCode] = useState('');
   const [bets, setBets] = useState({});
 
   useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
+    const savedCode = localStorage.getItem('studentCode');
     if (!savedNickname) {
-      router.push('/'); // Nếu chưa nhập nickname thì quay lại trang đầu
+      router.push('/'); // Chưa nhập nickname => quay về
     } else {
       setNickname(savedNickname);
+      if (savedCode) setStudentCode(savedCode);
     }
   }, []);
 
@@ -47,14 +50,21 @@ export default function BetPage() {
   };
 
   const handleSubmit = () => {
-    // TODO: Lưu dữ liệu vào database
-    console.log("Dự đoán của", nickname, bets);
+    // TODO: Gửi dữ liệu đến backend hoặc lưu Firebase
+    localStorage.setItem('studentCode', studentCode);
+    console.log("Dự đoán của", nickname, bets, "Mã SV:", studentCode);
     alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
   };
 
   return (
-    <main style={{ padding: 20 }}>
+    <main style={{ padding: 20, maxWidth: 800, margin: 'auto' }}>
       <h1>Chào {nickname}!</h1>
+      <input
+        placeholder="Mã sinh viên (tùy chọn)"
+        value={studentCode}
+        onChange={e => setStudentCode(e.target.value)}
+        style={{ marginBottom: 20, padding: 8, width: '100%' }}
+      />
       <h2>Chọn OVER hoặc UNDER cho từng ngành</h2>
       {majors.map(({ name, threshold }) => (
         <div key={name} style={{ marginBottom: 10 }}>
@@ -79,7 +89,7 @@ export default function BetPage() {
           </button>
         </div>
       ))}
-      <button onClick={handleSubmit} style={{ marginTop: 20 }}>
+      <button onClick={handleSubmit} style={{ marginTop: 20, padding: '10px 20px' }}>
         Gửi dự đoán
       </button>
     </main>
