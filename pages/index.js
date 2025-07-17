@@ -83,7 +83,7 @@ export default function Home() {
           />
 
           <button onClick={handleStart}>Bắt đầu dự đoán</button>
-        </>
+        </main>
       )}
 
       {step === 'bet' && (
