@@ -15,7 +15,7 @@ const majors = [
   { name: "Khoa học Vũ trụ và Công nghệ Vệ tinh (SST)", threshold: 20.85 },
   { name: "Kỹ thuật điện và Năng lượng tại tạo (EER)", threshold: 20.2 },
   { name: "Kỹ thuật Ô tô (ATE)", threshold: 21.45 },
-  { name: "Toán ứng dụng (MAT)", threshold: 20.1 },    
+  { name: "Toán ứng dụng (MAT)", threshold: 20.1 },
   { name: "Công nghệ vi mạch bán dẫn (SIC)", threshold: 23.9 },
   { name: "Dược học (MAT)", threshold: 22.55 },
 ];
@@ -25,27 +25,24 @@ export default function Home() {
   const [studentId, setStudentId] = useState('');
   const [bets, setBets] = useState({});
   const [step, setStep] = useState('intro');
+  const router = useRouter(); // Sửa lỗi thiếu router
 
- const handleStart = () => {
-  if (!nickname) {
-    alert('Vui lòng nhập nickname trước khi dự đoán');
-    return;
-  }
+  const handleStart = () => {
+    if (!nickname) {
+      alert('Vui lòng nhập nickname trước khi dự đoán');
+      return;
+    }
 
-  // Lưu nickname và studentId vào localStorage (để sang trang /rules hoặc /bet vẫn còn)
-  localStorage.setItem('nickname', nickname);
-  localStorage.setItem('studentId', studentId);
-
-  // Chuyển sang trang giới thiệu luật chơi
-  router.push('/rules');
-};
-
+    localStorage.setItem('nickname', nickname);
+    localStorage.setItem('studentId', studentId);
+    router.push('/rules'); // Điều hướng đúng cách
+  };
 
   const handleBetChange = (major, choice) => {
     setBets(prev => {
       if (prev[major] === choice) {
         const updated = { ...prev };
-        delete updated[major]; // Hủy chọn nếu nhấn lại
+        delete updated[major];
         return updated;
       }
       return { ...prev, [major]: choice };
@@ -62,10 +59,9 @@ export default function Home() {
         <>
           <h1>DỰ ĐOÁN ĐIỂM CHUẨN THPTQG CỦA USTH 🎯</h1>
           <p>
-            Xin chào mọi người, mình là <strong>Trí Đức – B3 khoa ICT</strong>.
+            Xin chào mọi người, mình là <strong>Trí Đức – B3 khoa ICT</strong>.<br />
             Với mong muốn rèn luyện kỹ năng code cũng như tạo ra một minigame thú vị cho cộng đồng USTH,
-            mình đã tự xây dựng trang web nhỏ này để mọi người cùng <strong>dự đoán điểm chuẩn THPTQG 2025</strong> theo hình thức <em>Over/Under</em>.
-            <br /><br />
+            mình đã tự xây dựng trang web nhỏ này để mọi người cùng <strong>dự đoán điểm chuẩn THPTQG 2025</strong> theo hình thức <em>Over/Under</em>.<br /><br />
             Hãy thử dự đoán xem năm nay điểm chuẩn sẽ cao hay thấp hơn mốc nhé!
             Có <strong>giải thưởng tiền mặt</strong> chờ bạn nếu dự đoán chính xác 🎁
           </p>
