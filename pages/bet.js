@@ -24,12 +24,10 @@ const majors = [
 export default function BetPage() {
   const router = useRouter();
   const [nickname, setNickname] = useState('');
-  const [studentCode, setStudentCode] = useState('');
   const [bets, setBets] = useState({});
 
   useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
-    const savedCode = localStorage.getItem('studentCode');
     if (!savedNickname) {
       router.push('/'); // Chưa nhập nickname => quay về
     } else {
