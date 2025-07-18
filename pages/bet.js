@@ -32,7 +32,6 @@ export default function BetPage() {
       router.push('/'); // Chưa nhập nickname => quay về
     } else {
       setNickname(savedNickname);
-      if (savedCode) setStudentCode(savedCode);
     }
   }, []);
 
@@ -48,11 +47,10 @@ export default function BetPage() {
   };
 
   const handleSubmit = () => {
-  // TODO: Gửi dữ liệu đến backend hoặc lưu Firebase
-  console.log("Dự đoán của", nickname, bets);
-  alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
-};
-
+    // TODO: Gửi dữ liệu đến backend hoặc lưu Firebase
+    console.log("Dự đoán của", nickname, bets);
+    alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
+  };
 
   return (
     <main style={{ padding: 20, maxWidth: 800, margin: 'auto' }}>
