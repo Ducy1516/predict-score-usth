@@ -24,12 +24,13 @@ const majors = [
 export default function BetPage() {
   const router = useRouter();
   const [nickname, setNickname] = useState('');
+  const [studentId, setStudentId] = useState('');
   const [bets, setBets] = useState({});
 
   useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
     if (!savedNickname) {
-      router.push('/'); // Chưa nhập nickname => quay về
+      router.push('/');
     } else {
       setNickname(savedNickname);
     }
@@ -48,15 +49,28 @@ export default function BetPage() {
 
   const handleSubmit = () => {
     // TODO: Gửi dữ liệu đến backend hoặc lưu Firebase
-    console.log("Dự đoán của", nickname, bets);
+    console.log("Nickname:", nickname);
+    console.log("MSV:", studentId);
+    console.log("Bets:", bets);
     alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
   };
 
   return (
     <main style={{ padding: 20, maxWidth: 800, margin: 'auto' }}>
       <h1>Chào {nickname}!</h1>
-      
-      <h2>Chọn OVER hoặc UNDER cho từng ngành</h2>
+
+      <label>
+        Mã sinh viên (nếu có):
+        <input
+          type="text"
+          value={studentId}
+          onChange={(e) => setStudentId(e.target.value)}
+          placeholder="VD: BI12-345"
+          style={{ marginLeft: 10 }}
+        />
+      </label>
+
+      <h2 style={{ marginTop: 30 }}>Chọn OVER hoặc UNDER cho từng ngành</h2>
       {majors.map(({ name, threshold }) => (
         <div key={name} style={{ marginBottom: 10 }}>
           <strong>{name}</strong> – Mốc: {threshold}
