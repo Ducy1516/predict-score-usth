@@ -37,7 +37,7 @@ export default function Home() {
 
       <input
         type="text"
-        placeholder="Hãy nhập mã sinh viên của bạn nhé!"
+        placeholder="Hãy nhập mã sinh viên (hoặc sđt nếu bạn không phải sinh viên USTH)!"
         value={studentId}
         onChange={e => setStudentId(e.target.value)}
         style={{ padding: 8, marginBottom: 20, width: "100%" }}
