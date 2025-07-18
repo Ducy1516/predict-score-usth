@@ -48,11 +48,11 @@ export default function BetPage() {
   };
 
   const handleSubmit = () => {
-    // TODO: Gửi dữ liệu đến backend hoặc lưu Firebase
-    localStorage.setItem('studentCode', studentCode);
-    console.log("Dự đoán của", nickname, bets, "Mã SV:", studentCode);
-    alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
-  };
+  // TODO: Gửi dữ liệu đến backend hoặc lưu Firebase
+  console.log("Dự đoán của", nickname, bets);
+  alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
+};
+
 
   return (
     <main style={{ padding: 20, maxWidth: 800, margin: 'auto' }}>
