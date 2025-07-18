@@ -60,12 +60,12 @@ export default function BetPage() {
       <h1>Chào {nickname}!</h1>
 
       <label>
-        Mã sinh viên (nếu có):
+        Vui lòng xác nhận lại mã sinh viên (hoặc SĐT nếu không phải sinh viên USTH):
         <input
           type="text"
           value={studentId}
           onChange={(e) => setStudentId(e.target.value)}
-          placeholder="VD: BI12-345"
+          placeholder="VD: 23BI14097 hoặc 0838608866"
           style={{ marginLeft: 10 }}
         />
       </label>
