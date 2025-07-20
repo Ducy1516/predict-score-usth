@@ -50,7 +50,7 @@ export default function RulesPage() {
       </div>
 
       <button onClick={handleContinue} style={{ padding: '10px 20px', fontSize: 16 }}>
-        Tôi đã hiểu và muốn tiếp tục
+        Tôi đã hiểu và muốn tiếp tục trò chơi
       </button>
     </main>
   );
