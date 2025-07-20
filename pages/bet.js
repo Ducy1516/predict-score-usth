@@ -1,8 +1,13 @@
-// pages/bet.js
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 
+export default function BetPage() {
+  const router = useRouter();
+  const [nickname, setNickname] = useState('');
+  const [studentId, setStudentId] = useState('');
+  const [bets, setBets] = useState({});
+  const [showImage, setShowImage] = useState(false);
+  
 const majors = [
   { name: "An toàn thông tin (CS)", threshold: 22.35 },
   { name: "Công nghệ Kỹ thuật Cơ điện tử (MET)", threshold: 22.6 },
@@ -22,103 +27,83 @@ const majors = [
   { name: "Dược học (PHA)", threshold: 22.55 },
 ];
 
-export default function BetPage() {
-  const router = useRouter();
-  const [nickname, setNickname] = useState('');
-  const [studentId, setStudentId] = useState('');
-  const [bets, setBets] = useState({});
-  const [showImage, setShowImage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
+useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
     if (!savedNickname) {
       router.push('/');
     } else {
       setNickname(savedNickname);
-      setIsLoading(false);
     }
   }, []);
 
-  const handleBetChange = (major, choice) => {
-    setBets(prev => {
-      if (prev[major] === choice) {
-        const updated = { ...prev };
-        delete updated[major];
-        return updated;
-      }
-      return { ...prev, [major]: choice };
-    });
+  const handleBet = (majorName, type) => {
+    setBets((prev) => ({
+      ...prev,
+      [majorName]: prev[majorName] === type ? null : type,
+    }));
   };
 
   const handleSubmit = () => {
-    console.log("Nickname:", nickname);
-    console.log("MSV:", studentId);
-    console.log("Bets:", bets);
-    alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
+    console.log('Nickname:', nickname);
+    console.log('Student ID:', studentId);
+    console.log('Bets:', bets);
+    alert("Dự đoán của bạn đã được ghi nhận!");
   };
 
-  if (isLoading) return null;
-
   return (
-    <main className="flex flex-col items-center p-4 max-w-3xl mx-auto">
+    <main className="p-6 max-w-3xl mx-auto text-center">
       <h1 className="text-2xl font-bold mb-4">Chào {nickname}!</h1>
 
-      <label className="mb-4 w-full text-center">
-        Xác nhận lại mã sinh viên (hoặc SĐT nếu không phải SV USTH):
+      <div className="mb-6">
         <input
           type="text"
+          placeholder="Nhập mã SV hoặc SĐT"
           value={studentId}
           onChange={(e) => setStudentId(e.target.value)}
-          placeholder="VD: 23BI14097 hoặc 0838608866"
-          className="border p-1 ml-2"
+          className="border p-2 rounded w-full"
         />
-      </label>
+      </div>
 
       <button
         onClick={() => setShowImage(!showImage)}
-        className="mb-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        className="mb-6 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
       >
-        {showImage ? 'Ẩn điểm chuẩn 2023–2024' : 'Hiện điểm chuẩn 2023–2024'}
+        {showImage ? "Ẩn ảnh điểm chuẩn" : "Hiện ảnh điểm chuẩn"}
       </button>
 
       {showImage && (
         <div className="mb-6">
-          <Image
+          <img
             src="/diem-chuan-2023-2024.png"
-            alt="Điểm chuẩn USTH"
-            width={800}
-            height={600}
-            className="rounded-lg shadow-lg"
-            unoptimized // nếu đang dùng ảnh trong public/
+            alt="Điểm chuẩn"
+            className="mx-auto rounded shadow-lg max-w-full"
           />
-          <p className="text-sm text-gray-500 mt-2 text-center">
-            Nếu không hiển thị ảnh, đảm bảo file nằm trong thư mục <code>/public</code> và tên ảnh đúng chính tả: <strong>diem-chuan-2023-2024.png</strong>
+          <p className="text-sm text-gray-500 mt-2">
+            ⚠️ Nếu ảnh không hiển thị, đảm bảo bạn đã đặt đúng file vào thư mục <code>/public/</code>!
           </p>
         </div>
       )}
 
-      <h2 className="text-xl font-semibold mb-4">Chọn OVER hoặc UNDER cho từng ngành</h2>
-
+      <h2 className="text-xl font-semibold mb-4">Chọn OVER hoặc UNDER</h2>
       {majors.map(({ name, threshold }) => (
-        <div key={name} className="mb-4 text-center">
-          <strong>{name}</strong> – Mốc: {threshold}
-          <div className="mt-1">
+        <div key={name} className="mb-4">
+          <p className="font-semibold">{name} – Mốc: {threshold}</p>
+          <div className="mt-2 space-x-4">
             <button
-              onClick={() => handleBetChange(name, 'OVER')}
-              className={`px-4 py-1 mr-2 rounded ${
-                bets[name] === 'OVER' ? 'bg-green-400' : 'bg-gray-200'
+              onClick={() => handleBet(name, 'OVER')}
+              className={`px-4 py-1 rounded ${
+                bets[name] === 'OVER' ? 'bg-green-500 text-white' : 'bg-gray-200'
               }`}
             >
-              Over
+              OVER
             </button>
             <button
-              onClick={() => handleBetChange(name, 'UNDER')}
+              onClick={() => handleBet(name, 'UNDER')}
               className={`px-4 py-1 rounded ${
-                bets[name] === 'UNDER' ? 'bg-red-400' : 'bg-gray-200'
+                bets[name] === 'UNDER' ? 'bg-red-500 text-white' : 'bg-gray-200'
               }`}
             >
-              Under
+              UNDER
             </button>
           </div>
         </div>
@@ -126,9 +111,9 @@ export default function BetPage() {
 
       <button
         onClick={handleSubmit}
-        className="mt-6 px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+        className="mt-6 bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded"
       >
-        Gửi dự đoán
+        Gửi Dự Đoán
       </button>
     </main>
   );
