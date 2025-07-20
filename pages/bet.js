@@ -9,22 +9,22 @@ export default function BetPage() {
   const [showImage, setShowImage] = useState(false);
   
 const majors = [
-  { name: "An toàn thông tin (CS)", threshold: 22.35 },
-  { name: "Công nghệ Kỹ thuật Cơ điện tử (MET)", threshold: 22.6 },
-  { name: "Công nghệ Sinh học - Phát triển thuốc (BIT)", threshold: 21.85 },
-  { name: "Công nghệ Thông tin - Truyền thông (ICT)", threshold: 22.65 },
-  { name: "Hóa học (CH)", threshold: 20.5 },
-  { name: "Khoa học dữ liệu (DS)", threshold: 21.95 },
-  { name: "Khoa học Môi trường Ứng dụng (AES)", threshold: 18.95 },
-  { name: "Khoa học và Công nghệ thực phẩm (FST)", threshold: 20.85 },
-  { name: "Khoa học và Công nghệ Y khoa (MST)", threshold: 21.6 },
-  { name: "Khoa học vật liệu tiên tiến và Công nghệ Nano (AMSN)", threshold: 21.55 },
-  { name: "Khoa học Vũ trụ và Công nghệ Vệ tinh (SST)", threshold: 21 },
-  { name: "Kỹ thuật điện và Năng lượng tại tạo (EER)", threshold: 20.6 },
-  { name: "Kỹ thuật Ô tô (ATE)", threshold: 21.75 },
-  { name: "Toán ứng dụng (MAT)", threshold: 20.5 },
-  { name: "Công nghệ vi mạch bán dẫn (SIC)", threshold: 25.2 },
-  { name: "Dược học (PHA)", threshold: 22.55 },
+  { name: "An toàn thông tin (CS)", threshold: 23.5 },
+  { name: "Công nghệ Kỹ thuật Cơ điện tử (MET)", threshold: 22.8 },
+  { name: "Công nghệ Sinh học - Phát triển thuốc (BIT)", threshold: 22.6 },
+  { name: "Công nghệ Thông tin - Truyền thông (ICT)", threshold: 23.5 },
+  { name: "Hóa học (CH)", threshold: 21 },
+  { name: "Khoa học dữ liệu (DS)", threshold: 23.15 },
+  { name: "Khoa học Môi trường Ứng dụng (AES)", threshold: 19.1 },
+  { name: "Khoa học và Công nghệ thực phẩm (FST)", threshold: 21.45 },
+  { name: "Khoa học và Công nghệ Y khoa (MST)", threshold: 22.05 },
+  { name: "Khoa học vật liệu tiên tiến và Công nghệ Nano (AMSN)", threshold: 21.9 },
+  { name: "Khoa học Vũ trụ và Công nghệ Vệ tinh (SST)", threshold: 21.3 },
+  { name: "Kỹ thuật điện và Năng lượng tại tạo (EER)", threshold: 20.85 },
+  { name: "Kỹ thuật Ô tô (ATE)", threshold: 22.25 },
+  { name: "Toán ứng dụng (MAT)", threshold: 20.9 },
+  { name: "Công nghệ vi mạch bán dẫn (SIC)", threshold: 25.5 },
+  { name: "Dược học (PHA)", threshold: 22.65 },
 ];
 
 useEffect(() => {
@@ -79,7 +79,6 @@ useEffect(() => {
             className="mx-auto rounded shadow-lg max-w-full"
           />
           <p className="text-sm text-gray-500 mt-2">
-            ⚠️ Nếu ảnh không hiển thị, đảm bảo bạn đã đặt đúng file vào thư mục <code>/public/</code>!
           </p>
         </div>
       )}
