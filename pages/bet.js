@@ -1,6 +1,7 @@
 // pages/bet.js
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const majors = [
   { name: "An toàn thông tin (CS)", threshold: 22.05 },
@@ -26,6 +27,7 @@ export default function BetPage() {
   const [nickname, setNickname] = useState('');
   const [studentId, setStudentId] = useState('');
   const [bets, setBets] = useState({});
+  const [showImage, setShowImage] = useState(false); // 👈 Toggle ảnh
 
   useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
@@ -35,24 +37,6 @@ export default function BetPage() {
       setNickname(savedNickname);
     }
   }, []);
-
-  import Image from "next/image";
-
-export default function BetPage() {
-  return (
-    <main className="flex flex-col items-center p-4">
-      <h1 className="text-2xl font-bold mb-4">Kèo điểm chuẩn USTH</h1>
-
-      <Image
-        src="/diem-chuan-2023-2024.png"
-        alt="Điểm chuẩn USTH"
-        width={800}
-        height={600}
-        className="rounded-lg shadow-md"
-      />
-    </main>
-  );
-}
 
   const handleBetChange = (major, choice) => {
     setBets(prev => {
@@ -66,7 +50,7 @@ export default function BetPage() {
   };
 
   const handleSubmit = () => {
-    // TODO: Gửi dữ liệu đến backend hoặc lưu Firebase
+    // TODO: Gửi dữ liệu đến backend hoặc Firebase
     console.log("Nickname:", nickname);
     console.log("MSV:", studentId);
     console.log("Bets:", bets);
@@ -74,45 +58,67 @@ export default function BetPage() {
   };
 
   return (
-    <main style={{ padding: 20, maxWidth: 800, margin: 'auto' }}>
-      <h1>Chào {nickname}!</h1>
+    <main className="flex flex-col items-center p-4 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Chào {nickname}!</h1>
 
-      <label>
-        Vui lòng xác nhận lại mã sinh viên (hoặc SĐT nếu không phải sinh viên USTH):
+      <label className="mb-4 w-full text-center">
+        Xác nhận lại mã sinh viên (hoặc SĐT nếu không phải SV USTH):
         <input
           type="text"
           value={studentId}
           onChange={(e) => setStudentId(e.target.value)}
           placeholder="VD: 23BI14097 hoặc 0838608866"
-          style={{ marginLeft: 10 }}
+          className="border p-1 ml-2"
         />
       </label>
 
-      <h2 style={{ marginTop: 30 }}>Chọn OVER hoặc UNDER cho từng ngành</h2>
+      <button
+        onClick={() => setShowImage(!showImage)}
+        className="mb-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        {showImage ? 'Ẩn điểm chuẩn 2023–2024' : 'Hiện điểm chuẩn 2023–2024'}
+      </button>
+
+      {showImage && (
+        <Image
+          src="/diem-chuan-2023-2024.png"
+          alt="Điểm chuẩn USTH"
+          width={800}
+          height={600}
+          className="rounded-lg shadow-lg mb-6"
+        />
+      )}
+
+      <h2 className="text-xl font-semibold mb-4">Chọn OVER hoặc UNDER cho từng ngành</h2>
+
       {majors.map(({ name, threshold }) => (
-        <div key={name} style={{ marginBottom: 10 }}>
+        <div key={name} className="mb-4 text-center">
           <strong>{name}</strong> – Mốc: {threshold}
-          <br />
-          <button
-            onClick={() => handleBetChange(name, 'OVER')}
-            style={{
-              marginRight: 10,
-              backgroundColor: bets[name] === 'OVER' ? 'lightgreen' : '',
-            }}
-          >
-            Over
-          </button>
-          <button
-            onClick={() => handleBetChange(name, 'UNDER')}
-            style={{
-              backgroundColor: bets[name] === 'UNDER' ? 'lightcoral' : '',
-            }}
-          >
-            Under
-          </button>
+          <div className="mt-1">
+            <button
+              onClick={() => handleBetChange(name, 'OVER')}
+              className={`px-4 py-1 mr-2 rounded ${
+                bets[name] === 'OVER' ? 'bg-green-400' : 'bg-gray-200'
+              }`}
+            >
+              Over
+            </button>
+            <button
+              onClick={() => handleBetChange(name, 'UNDER')}
+              className={`px-4 py-1 rounded ${
+                bets[name] === 'UNDER' ? 'bg-red-400' : 'bg-gray-200'
+              }`}
+            >
+              Under
+            </button>
+          </div>
         </div>
       ))}
-      <button onClick={handleSubmit} style={{ marginTop: 20, padding: '10px 20px' }}>
+
+      <button
+        onClick={handleSubmit}
+        className="mt-6 px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+      >
         Gửi dự đoán
       </button>
     </main>
