@@ -27,7 +27,8 @@ export default function BetPage() {
   const [nickname, setNickname] = useState('');
   const [studentId, setStudentId] = useState('');
   const [bets, setBets] = useState({});
-  const [showImage, setShowImage] = useState(false); // 👈 Toggle ảnh
+  const [showImage, setShowImage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // ✅ chờ load localStorage
 
   useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
@@ -35,6 +36,7 @@ export default function BetPage() {
       router.push('/');
     } else {
       setNickname(savedNickname);
+      setIsLoading(false);
     }
   }, []);
 
@@ -50,12 +52,13 @@ export default function BetPage() {
   };
 
   const handleSubmit = () => {
-    // TODO: Gửi dữ liệu đến backend hoặc Firebase
     console.log("Nickname:", nickname);
     console.log("MSV:", studentId);
     console.log("Bets:", bets);
     alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
   };
+
+  if (isLoading) return null; // ✅ tránh render sớm
 
   return (
     <main className="flex flex-col items-center p-4 max-w-3xl mx-auto">
