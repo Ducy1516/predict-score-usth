@@ -36,6 +36,24 @@ export default function BetPage() {
     }
   }, []);
 
+  import Image from "next/image";
+
+export default function BetPage() {
+  return (
+    <main className="flex flex-col items-center p-4">
+      <h1 className="text-2xl font-bold mb-4">Kèo điểm chuẩn USTH</h1>
+
+      <Image
+        src="/diem-chuan-2023-2024.png"
+        alt="Điểm chuẩn USTH"
+        width={800}
+        height={600}
+        className="rounded-lg shadow-md"
+      />
+    </main>
+  );
+}
+
   const handleBetChange = (major, choice) => {
     setBets(prev => {
       if (prev[major] === choice) {
