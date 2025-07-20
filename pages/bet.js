@@ -4,22 +4,22 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 const majors = [
-  { name: "An toàn thông tin (CS)", threshold: 22.05 },
-  { name: "Công nghệ Kỹ thuật Cơ điện tử (MET)", threshold: 22.3 },
-  { name: "Công nghệ Sinh học - Phát triển thuốc (BIT)", threshold: 21.25 },
-  { name: "Công nghệ Thông tin - Truyền thông (ICT)", threshold: 21.6 },
-  { name: "Hóa học (CH)", threshold: 20.35 },
-  { name: "Khoa học dữ liệu (DS)", threshold: 21.5 },
-  { name: "Khoa học Môi trường Ứng dụng (AES)", threshold: 18.15 },
-  { name: "Khoa học và Công nghệ thực phẩm (FST)", threshold: 20.05 },
-  { name: "Khoa học và Công nghệ Y khoa (MST)", threshold: 20.75 },
-  { name: "Khoa học vật liệu tiên tiến và Công nghệ Nano (AMSN)", threshold: 21.05 },
-  { name: "Khoa học Vũ trụ và Công nghệ Vệ tinh (SST)", threshold: 20.85 },
-  { name: "Kỹ thuật điện và Năng lượng tại tạo (EER)", threshold: 20.2 },
-  { name: "Kỹ thuật Ô tô (ATE)", threshold: 21.45 },
-  { name: "Toán ứng dụng (MAT)", threshold: 20.1 },
-  { name: "Công nghệ vi mạch bán dẫn (SIC)", threshold: 23.9 },
-  { name: "Dược học (MAT)", threshold: 22.55 },
+  { name: "An toàn thông tin (CS)", threshold: 22.35 },
+  { name: "Công nghệ Kỹ thuật Cơ điện tử (MET)", threshold: 22.6 },
+  { name: "Công nghệ Sinh học - Phát triển thuốc (BIT)", threshold: 21.85 },
+  { name: "Công nghệ Thông tin - Truyền thông (ICT)", threshold: 22.65 },
+  { name: "Hóa học (CH)", threshold: 20.5 },
+  { name: "Khoa học dữ liệu (DS)", threshold: 21.95 },
+  { name: "Khoa học Môi trường Ứng dụng (AES)", threshold: 18.95 },
+  { name: "Khoa học và Công nghệ thực phẩm (FST)", threshold: 20.85 },
+  { name: "Khoa học và Công nghệ Y khoa (MST)", threshold: 21.6 },
+  { name: "Khoa học vật liệu tiên tiến và Công nghệ Nano (AMSN)", threshold: 21.55 },
+  { name: "Khoa học Vũ trụ và Công nghệ Vệ tinh (SST)", threshold: 21 },
+  { name: "Kỹ thuật điện và Năng lượng tại tạo (EER)", threshold: 20.6 },
+  { name: "Kỹ thuật Ô tô (ATE)", threshold: 21.75 },
+  { name: "Toán ứng dụng (MAT)", threshold: 20.5 },
+  { name: "Công nghệ vi mạch bán dẫn (SIC)", threshold: 25.2 },
+  { name: "Dược học (PHA)", threshold: 22.55 },
 ];
 
 export default function BetPage() {
