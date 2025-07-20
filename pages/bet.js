@@ -28,7 +28,7 @@ export default function BetPage() {
   const [studentId, setStudentId] = useState('');
   const [bets, setBets] = useState({});
   const [showImage, setShowImage] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // ✅ chờ load localStorage
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const savedNickname = localStorage.getItem('nickname');
@@ -58,7 +58,7 @@ export default function BetPage() {
     alert("Dự đoán đã được ghi nhận. Cảm ơn bạn!");
   };
 
-  if (isLoading) return null; // ✅ tránh render sớm
+  if (isLoading) return null;
 
   return (
     <main className="flex flex-col items-center p-4 max-w-3xl mx-auto">
@@ -83,13 +83,19 @@ export default function BetPage() {
       </button>
 
       {showImage && (
-        <Image
-          src="/diem-chuan-2023-2024.png"
-          alt="Điểm chuẩn USTH"
-          width={800}
-          height={600}
-          className="rounded-lg shadow-lg mb-6"
-        />
+        <div className="mb-6">
+          <Image
+            src="/diem-chuan-2023-2024.png"
+            alt="Điểm chuẩn USTH"
+            width={800}
+            height={600}
+            className="rounded-lg shadow-lg"
+            unoptimized // nếu đang dùng ảnh trong public/
+          />
+          <p className="text-sm text-gray-500 mt-2 text-center">
+            Nếu không hiển thị ảnh, đảm bảo file nằm trong thư mục <code>/public</code> và tên ảnh đúng chính tả: <strong>diem-chuan-2023-2024.png</strong>
+          </p>
+        </div>
       )}
 
       <h2 className="text-xl font-semibold mb-4">Chọn OVER hoặc UNDER cho từng ngành</h2>
